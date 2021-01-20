@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Enable user to change language:
@@ -25,6 +26,11 @@ urlpatterns = [
         "products/",
         include("purbeurre.products.urls", namespace="products"),
     ),
+    # Reset password views
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "users/password/reset_password.html"), name ='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "users/password/password_reset_sent.html"), name ='password_reset_done'),
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name = "users/password/password_reset_form.html"), name ='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "users/password/password_reset_done.html"), name ='password_reset_complete')
 ]
 
 if settings.DEBUG:

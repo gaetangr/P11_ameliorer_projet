@@ -4,10 +4,11 @@ from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView
-
+import logging
 from purbeurre.products.forms import ProductSearchForm
 from purbeurre.products.models import Category, Product
 from purbeurre.users.models import Favorite
+
 
 
 def search_product(request):
@@ -21,7 +22,7 @@ def search_product(request):
     user_input = request.GET.get("product_search")
     # User input normalization
     user_input = str(user_input).lower().capitalize()
-
+   
     try:
         # Retrieve PK for the product searched by user
         product_name = Product.objects.filter(name=user_input)[0]
@@ -53,6 +54,7 @@ def search_product(request):
         messages.error(
             request, (f"Impossible de trouver des substitutes à {user_input}")
         )
+        logging.error(f"{request.user} tried to search {user_input}")
         return redirect("/")
 
 

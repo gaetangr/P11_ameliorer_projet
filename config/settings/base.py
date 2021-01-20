@@ -6,6 +6,12 @@ from pathlib import Path
 
 import environ
 
+import logging
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
+
 # purbeurre/
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = BASE_DIR / "purbeurre"

@@ -1,4 +1,5 @@
 import json.decoder
+import logging
 
 from django.conf import settings
 from django.contrib import messages
@@ -163,6 +164,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
 
     message = _("Your account has been created !")
+    logging.info("New account")
     success_message = message
 
 
