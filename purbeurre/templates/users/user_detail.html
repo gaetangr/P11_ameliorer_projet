@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% load static i18n %}
+{% block title %}
+User: {{object.username }}{% endblock %} {% block content %}
+<header class="masthead">
+	<div class="container">
+		<div class="row text-center">
+			<h1 class="col text-white font-weight-bold">
+		Salut, {{ object.username }} 👋 <a class="btn-sm btn-primary" href="{% url 'users:update' %}" role="button"
+        >Mon profil</a
+      >
+			</h1>
+		</div>
+	</div>
+</header>
+<div class="container mt-5 mb-5 pt-5 pb-5">
+  <div class="row mt-5 mb-5 pt-5 pb-5">
+    <div class="text-center col-sm-12 mt-5 mb-5 pt-5 pb-5">
+      {% if object.username %}
+      <hr>
+      {% endif %} {% if object.bio|linebreaksbr %} <!-- When user break line, Jinja2 adds a br tag-->
+      <p>{{ object.email }}</p>
+      <p>{{ object.bio }}</p>
+      {% endif %}
+       <hr>
+
+
+    </div>
+  </div>
+
+  {% if object == request.user %}
+  <!-- Action buttons -->
+  <div class="row">
+    <div class="col-sm-12">
+
+      <!-- Your Stuff: Custom user template urls -->
+    </div>
+  </div>
+  <!-- End Action buttons -->
+  {% endif %}
+</div>
+
+{% endblock content %}

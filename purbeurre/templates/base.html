@@ -1,0 +1,92 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{% block title %}Pur Beurre{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Pur Beurre est l'initiative de deux amoureux de la gastronomie française, Colette Tatou et Rémy, que vous avez déjà certainement rencontrés dans notre excellent restaurant Ratatouille."
+    />
+    <meta name="author" content="Gaëtan GR" />
+    <!-- Favicon-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body id="page-top" class="d-flex flex-column min-vh-100">
+
+    <!-- Navigation  -->
+    {% include "pages/nav.html" %}
+
+
+
+    {% block content %}
+      {% endblock content %}
+
+      <!-- Intro with header and nav bar  -->
+
+    <!-- Footer and legals informations  -->
+
+    <footer class="fixed-bottom" style="background-color: #e8a75d">
+      <div class="container">
+        <div class="row">
+
+          <div class="text-center col-6">
+            <a href="/legal/" class="text-dark">Mentions légales</a>
+          </div>
+          <div class="text-center col-6">Contact</div>
+        </div>
+      </div>
+      <!-- Enable user to change language:  https://docs.djangoproject.com/en/3.1/topics/i18n/translation/#the-set-language-redirect-view -->
+<form action="{% url 'set_language' %}" method="post" class="form-group ml-2">{% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}">
+    <select name="language">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                {{ language.name_local }} ({{ language.code }})
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit"  class="btn btn-primary btn-sm" value="Go">
+  <p class="text-muted small">{% trans "Language preference will be reset if you clear your cookies" %}</p>
+  </form>
+
+    </footer>
+
+
+
+ <!-- TODO : Fix autocomplete -->
+<!-- <script>
+
+$( "#autocomplete" ).autocomplete({
+  source: "/products/all/",
+  minLength: 0
+});
+
+</script> -->
+
+ <script>
+$( "#autocomplete" ).autocomplete({
+  source: "/products/all/",
+  minLength: 3
+});
+</script>
+
+
+ <script type="text/javascript" src="//www.3dcart.com/lp/cookie-law-generator/cookie.js?skin=cookielaw4&amp;box_radius=0&amp;animation=shake&amp;learnmore=En%20savoir%20plus&amp;morelink=https://www.cnil.fr/fr/reglement-europeen-protection-donnees&amp;accept_text=Continuer&amp;msg=Nous%20utilisons%20des%20cookies%20pour%20vous%20garantir%20la%20meilleure%20exp%C3%A9rience%20sur%20notre%20site.%20Si%20vous%20continuez%20%C3%A0%20utiliser%20ce%20dernier%2C%20nous%20consid%C3%A9rerons%20que%20vous%20acceptez%20l'utilisation%20des%20cookies.%20"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+  </body>
+</html>

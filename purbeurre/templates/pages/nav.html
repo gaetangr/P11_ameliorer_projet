@@ -1,0 +1,68 @@
+ {% load static i18n %}
+ <!-- Navigation-->
+
+        <nav style="background-color: #e8a75d" class="navbar navbar-expand-lg navbar-light fixed-top py-1 fixed-top py-3" id="mainNav">
+            <div class="container" >
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/" class="navbar-brand js-scroll-trigger logo">
+                            <img id="logo" height="40px" src="{% static 'assets/img/logo_pur_beurre.png' %}">
+                            <span class="ml-2" style="border-bottom: solid 3px #C45525;">Pur Beurre</span>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                  <!-- Navigation links -->
+              <div class="collapse navbar-collapse text-right" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+
+        </ul>
+        <ul class="navbar-nav ml-auto pr-2 my-2">
+               <form action="{% url 'products:prod' %}" method="get">
+            <div class="input-group input-group mb-3">
+              <input
+                class="search-input form-control secondary-search"
+                type="text"
+                placeholder="Ex: Nutella"
+                aria-label="Search"
+                name="product_search"
+              />
+              <div class="input-group-append">
+              </div>
+            </div>
+          </form>
+           {% if request.user.is_authenticated %}
+
+              <li class="nav-item ">
+                <a class="nav-link" id="user-detail" href="{% url 'users:detail' request.user.username  %}"><i class="menu--user fa-2x fas fa-user"></i></a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="{% url 'users:fav' request.user.username  %}"><i class="menu--carrot fa-2x fas fa-carrot"></i></a>
+              </li>
+              <li class="nav-item">
+
+                <a class="nav-link" href="{% url 'users:logout' %}"><i class="menu--logout fa-2x fas fa-sign-out-alt"></i></a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+
+                <a id="sign-up-link" class="nav-link" href="{% url 'users:create' %}"><i class="fas fa-user-plus fa-2x ml-1 align-middle"></i></a>
+              </li>
+              <li class="nav-item">
+
+                <a id="log-in-link" class="nav-link" href="{% url 'users:login' %}"><i class="menu--login fa-2x fas fa-sign-in-alt"></i></a>
+              </li>
+
+                           {% endif %}
+        </ul>
+    </div>
+            </div>
+        </nav>
+<br />

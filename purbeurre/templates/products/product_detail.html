@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+        {% block title %} {{ product.name }}{% endblock title %}
+{% block content %}
+<br><br>
+<br><br>
+<header style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url({{ product.image_url }}) repeat-x; background-size: contain;">
+
+	<div class="container">
+		<div class="row text-center">
+			<h1 class="col text-white font-weight-bold mt-3 pt-3">
+
+	{{ product.name }}
+
+			</h1>
+		</div>
+	</div>
+</header>
+<div class="container card-group mt-2 pt-2">
+<div class="card text-center mb-3 col--6 mt-2 pt-2">
+          <div class="card-body bg-grey">
+            <img
+              height="100px"
+              src=" https://static.openfoodfacts.org/images/attributes/nutriscore-{{ product.nutriscore_grade}}.svg"
+              class="pb-3 mb-3 mt-4"
+              alt=""
+            /> <img
+              height="100px"
+              src="{{ product.image_nutrition_url }}"
+              class="pb-3 mb-3 mt-4"
+              alt=""
+            /> <br>
+            <a href="{{ product.url }}" class="btn btn-primary mt-2 pt-2"
+              >Ficher produit sur OpenFoodFact</a
+            >
+
+
+          </div>
+        </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static i18n %}
+{% block content %}
+{% with action=view.action|default:"Add" %}
+<div class="container mt-5 pt-5">
+<h1> {% trans "Formulaire !" %}</h1>
+<form method="post" action="." class="mt-2 mb-5 pt-2 pb-5">
+{% csrf_token %}
+{{ form|crispy }}
+<button type="submit" id="button-submit" class="btn btn-primary mb-5"> {% trans "Send" %}</button>
+</form>
+</div>
+{% endwith %}
+
+{% endblock content %}

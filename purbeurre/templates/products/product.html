@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header class="mt-5" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url({{ origin_product.image_url }}) repeat-x; background-size: contain;">
+
+	<div class="container">
+		<div class="row text-center">
+			<h1 class="col text-white font-weight-bold mt-3 pt-3">
+
+	{{ origin_product}}
+
+			</h1>
+		</div>
+	</div>
+</header>
+   <div class="row justify-content-center mt-5 mb-5">
+{% for product in product %}
+<div class="card-group ml-1 col-lg-3 col-md-6 d-flex justify-content-center">
+<div class="card text-center mb-3 col--6">
+
+    <h1><span class="badge bg-success" style="position: absolute; right: -9px; top: -15px; border-radius:20px ">
+
+   {{ product.nutriscore_grade|upper }}
+    </span></h1>
+
+          <div class="card-body bg-grey">
+
+            <h5 class="card-title ">{{ product.name }}</h5>
+
+            <img
+              height="180px"
+              width="180px"
+              src="{{ product.image_url }}"
+              class="pb-3 mb-3 mt-4"
+              alt=""
+            /><br />
+
+
+            <a href="{% url 'products:detail' product.id  %}" class="btn btn-primary"
+              >Ficher produit</a>
+              <br>
+
+            {% if request.user.is_authenticated %}
+            <br>
+
+            <form action="{% url 'products:save' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ origin_product.pk}}">
+              <input type="hidden" name="substitute_id" value="{{ product.id }}">
+              <button type="submit" class="btn btn-primary">Sauvegarder</button>
+          </form>
+
+
+            {% else %}
+            <br>
+              <a href="" class="btn btn-primary disabled"> Sauvegarder </a>
+            {% endif %}
+            <br />
+
+          </div>
+          <br><br><br>
+        </div>
+
+</div>
+
+{% endfor %}
+</div>
+
+
+
+
+        {% endblock content %}
