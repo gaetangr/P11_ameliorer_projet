@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/gaetangr/P8_pur_beurre.svg?branch=development)](https://travis-ci.com/gaetangr/P8_pur_beurre)
-![PurBeurre Build](https://github.com/gaetangr/P8_pur_beurre/workflows/PurBeurre%20Build/badge.svg?event=push)
 # ✨ Pur Beurre ✨
 
 Pur beurre is an application that help you eat better
