@@ -7,4 +7,5 @@ urlpatterns = [
     path("save", views.save_favorite, name="save"),
     path("", views.search_product, name="prod"),
     path(route="<int:pk>", view=views.ProductDetailView.as_view(), name="detail"),
+    path("get_product/", views.get_product, name="ajax"),
 ]

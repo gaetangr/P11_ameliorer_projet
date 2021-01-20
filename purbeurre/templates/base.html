@@ -64,14 +64,12 @@
     </footer>
 
 
-
+<!-- Add autocompletion with JQUERY -->
 <script>
-
 $( "#autocomplete" ).autocomplete({
-  source: "/products/all/",
-  minLength: 0
+  source: "{% url 'products:ajax' %}",
+  minLength: 3
 });
-
 </script>
 
 

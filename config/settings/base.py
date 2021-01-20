@@ -2,12 +2,10 @@
 Base settings to be extended for production, test and local.
 Settings common to all instances of the project.
 """
+import logging
 from pathlib import Path
 
 import environ
-
-import logging
-
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration

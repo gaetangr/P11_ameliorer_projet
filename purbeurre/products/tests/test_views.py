@@ -2,6 +2,7 @@
 """ Unit tests related to users/views"""
 import pytest
 from django.urls import reverse
+
 from purbeurre.products.models import Category, Product
 from purbeurre.users.tests.factories import UserFactory
 
