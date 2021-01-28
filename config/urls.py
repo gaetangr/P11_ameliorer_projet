@@ -55,6 +55,7 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    path('exports/', include('purbeurre.exports.urls', namespace='exports')),
 ]
 
 if settings.DEBUG:
@@ -81,7 +82,9 @@ if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
-        urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+        urlpatterns = [
+            path("__debug__/", include(debug_toolbar.urls))
+        ] + urlpatterns
 
 project_name = "Pur Beurre "
 admin.site.site_header = f"{project_name} - Web Plateform"
