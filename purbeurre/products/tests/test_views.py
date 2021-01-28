@@ -2,6 +2,7 @@
 """ Unit tests related to users/views"""
 import pytest
 from django.urls import reverse
+from django.test import Client
 
 from purbeurre.products.models import Category, Product
 from purbeurre.users.tests.factories import UserFactory
@@ -44,3 +45,13 @@ def test_if_no_product_provided_should_return_redirect(client):
     url = reverse("products:prod")
     response = client.get(url)
     assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_if_product_is_search_ajax_should_return_200():
+    """If user input search product, autocomplete should return 200 and return product"""
+    Product.objects.create(name="Nutella")
+    c = Client(enforce_csrf_checks=True)
+    response = c.get('/products/get_product/', {'term': 'Nutella'})
+    assert response.content == b'["Nutella"]'
+    assert response.status_code == 200
