@@ -11,8 +11,10 @@ class FavoriteExportView(LoginRequiredMixin, View):
     """Exports favorites as a CSV file."""
 
     def get(self, request, *args, **kwargs):
-        response = HttpResponse(content_type='text/plain')
-        favorites = Favorite.object.filter(user=request.user)
+        response = HttpResponse(content_type='text/csv')
+
+        response['Content-Disposition'] = f'attachment; filename="{request.user}_favorites.csv"'
+        favorites = Favorite.objects.filter(user=request.user)
         fieldnames = [
             'product_id',
             'product_code',

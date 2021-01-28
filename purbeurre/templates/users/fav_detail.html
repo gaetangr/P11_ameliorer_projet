@@ -4,7 +4,15 @@ Favoris de: {{object.username }}{% endblock %}
 {% block content %}
 
 <div class="container mt-5 mb-5 pt-5 pb-5">
-   <h1 class="text-center">Vos favoris</h1>
+  <a class="btn-sm btn-primary float-left" href="{% url 'exports:favorites_csv' %}" role="button"
+        >Exporter au format CSV</a
+      >
+   <h1 class="text-center">Vos favoris
+     
+   </h1>
+   <br>
+    
+   
    <hr>
     <div class="row justify-content-center mt-5 mb-5">
 

@@ -58,11 +58,11 @@ class Favorite(models.Model):
             'product_id': self.product.id,
             'product_code': self.product.code,
             'product_name': self.product.name,
-            'product_nutriscore': self.product.nutriscore,
+            'product_nutriscore': self.product.nutriscore_grade,
             'product_url': self.product.url,
             'substitute_id': self.substitute.id,
             'substitute_code': self.substitute.code,
             'substitute_name': self.substitute.name,
-            'substitute_nutriscore': self.substitute.nutriscore,
+            'substitute_nutriscore': self.substitute.nutriscore_grade,
             'substitute_url': self.substitute.url,
         }

@@ -2,7 +2,8 @@
 """ Unit tests related to users/views"""
 import pytest
 from django.urls import reverse
-
+from django.core import mail
+from django.test import TestCase
 from .factories import UserFactory
 
 
@@ -41,6 +42,21 @@ def test_if_fav_views_is_unsuccessful_for_anonymous(client):
     response = client.get(url)
     assert response.status_code == 302
 
+
+class EmailTest(TestCase):
+    def test_send_email(self):
+        # Send message.
+        mail.send_mail(
+            'Subject here', 'Here is the message.',
+            'from@example.com', ['to@example.com'],
+            fail_silently=False,
+        )
+
+        # Test that one message has been sent.
+        self.assertEqual(len(mail.outbox), 1)
+
+        # Verify that the subject of the first message is correct.
+        self.assertEqual(mail.outbox[0].subject, 'Subject here')
 
 # Extra tests to assert some pages return 200 response and that admin page are
 # not available for regular users
