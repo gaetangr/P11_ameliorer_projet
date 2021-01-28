@@ -15,8 +15,8 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("window-size=1920x1080")
 
 
-class TestUserBehavior(StaticLiveServerTestCase):
-    """Functional test for the login and registeration behiavor"""
+class TestUserRequestPasswordBehavior(StaticLiveServerTestCase):
+    """Functional test for the reset password behiavor"""
 
     @classmethod
     def setUpClass(cls):
@@ -46,5 +46,5 @@ class TestUserBehavior(StaticLiveServerTestCase):
             self.email
         )
         self.browser.find_element_by_css_selector("#button-submit").click()
-        assert len(mail.outbox) == 1
-        time.sleep(4)
+        time.sleep(7.1)
+        self.assertEqual(len(mail.outbox), 1)
