@@ -1,12 +1,11 @@
-""" Functional test for registration and login user behavior """
 import sys
 import time
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.core import mail
-from django.test import TestCase
 from django.urls import reverse
 from selenium import webdriver
+from django.test import TestCase
+from django.core import mail
 
 from config.settings.base import BASE_DIR
 
@@ -42,5 +41,7 @@ class TestUserRequestPasswordBehavior(StaticLiveServerTestCase):
         self.browser.get("http://127.0.0.1:8000/reset_password/")
 
         # Sending email for reset
-        self.browser.find_element_by_css_selector("#id_email").send_keys(self.email)
+        self.browser.find_element_by_css_selector("#id_email").send_keys(
+            self.email
+        )
         self.browser.find_element_by_css_selector("#button-submit").click()
