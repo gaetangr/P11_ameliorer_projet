@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
         downloader = Downloader()
         cleaner = DataCleaner()
-        products = downloader.get_product(20, 20)
+        products = downloader.get_product(40, 40)
         categories, products = cleaner.clean(products)
 
         for cat in categories:

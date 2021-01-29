@@ -1,8 +1,8 @@
 # flake8: noqa
 """ Unit tests related to users/views"""
 import pytest
-from django.urls import reverse
 from django.test import Client
+from django.urls import reverse
 
 from purbeurre.products.models import Category, Product
 from purbeurre.users.tests.factories import UserFactory
@@ -52,6 +52,6 @@ def test_if_product_is_search_ajax_should_return_200():
     """If user input search product, autocomplete should return 200 and return product"""
     Product.objects.create(name="Nutella")
     c = Client(enforce_csrf_checks=True)
-    response = c.get('/products/get_product/', {'term': 'Nutella'})
+    response = c.get("/products/get_product/", {"term": "Nutella"})
     assert response.content == b'["Nutella"]'
     assert response.status_code == 200

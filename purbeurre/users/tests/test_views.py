@@ -1,9 +1,10 @@
 # flake8: noqa
 """ Unit tests related to users/views"""
 import pytest
-from django.urls import reverse
 from django.core import mail
 from django.test import TestCase
+from django.urls import reverse
+
 from .factories import UserFactory
 
 

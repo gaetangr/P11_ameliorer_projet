@@ -16,9 +16,7 @@ class User(AbstractUser):
     bio = models.TextField(
         "Bio",
         blank=True,
-        help_text=_(
-            "Tell the world about yourself, what products do you like etc."
-        ),
+        help_text=_("Tell the world about yourself, what products do you like etc."),
     )
 
     def get_absolute_url(self):
@@ -55,14 +53,14 @@ class Favorite(models.Model):
     def as_dict(self):
         """Serializes favorite information in a dictionary."""
         return {
-            'product_id': self.product.id,
-            'product_code': self.product.code,
-            'product_name': self.product.name,
-            'product_nutriscore': self.product.nutriscore_grade,
-            'product_url': self.product.url,
-            'substitute_id': self.substitute.id,
-            'substitute_code': self.substitute.code,
-            'substitute_name': self.substitute.name,
-            'substitute_nutriscore': self.substitute.nutriscore_grade,
-            'substitute_url': self.substitute.url,
+            "product_id": self.product.id,
+            "product_code": self.product.code,
+            "product_name": self.product.name,
+            "product_nutriscore": self.product.nutriscore_grade,
+            "product_url": self.product.url,
+            "substitute_id": self.substitute.id,
+            "substitute_code": self.substitute.code,
+            "substitute_name": self.substitute.name,
+            "substitute_nutriscore": self.substitute.nutriscore_grade,
+            "substitute_url": self.substitute.url,
         }
